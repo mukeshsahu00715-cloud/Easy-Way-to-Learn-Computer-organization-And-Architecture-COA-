@@ -1,0 +1,6 @@
+{
+  "name": "COA Study Hub",
+  "description": "Learn Computer Organization and Architecture with simplified notes, interactive CPU & memory simulators, video lectures, and practice quizzes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

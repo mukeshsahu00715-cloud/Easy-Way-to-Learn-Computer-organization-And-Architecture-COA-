@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COA Study Hub | Computer Organization & Architecture</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#" class="logo">COA<span>Hub</span></a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#courses">Chapters</a>
+      <a href="#notes">Quick Notes</a>
+      <a href="#simulator">Architecture Sim</a>
+      <a href="#videos">Videos</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <p class="tag">YOUR SMART STUDY PARTNER</p>
+      <h1>Learn COA the <span>Easy Way.</span></h1>
+      <p>Simplified notes, CPU datapath diagrams, curated video lectures, and practice quizzes to help you ace your university & competitive exams.</p>
+      <div class="hero-actions">
+        <a href="#courses" class="btn">Start Learning →</a>
+        <a href="#simulator" class="btn btn-outline">Try CPU Simulator</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="chip">CPU</div>
+      <h2>Computer Architecture</h2>
+      <p>Understand how hardware executes code, step by step.</p>
+      <div class="mini-grid">
+        <div>01<br><b>CPU & ALU</b></div>
+        <div>02<br><b>Memory Hierarchy</b></div>
+        <div>03<br><b>Logic & Circuits</b></div>
+        <div>04<br><b>Control Unit</b></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- CHAPTERS LIST -->
+    <section class="section" id="courses">
+      <div class="section-heading">
+        <p class="tag">LEARN BY TOPIC</p>
+        <h2>COA Chapters</h2>
+        <p>Choose any topic below to open comprehensive quick-revision notes.</p>
+      </div>
+
+      <input type="text" id="search" placeholder="Search chapters, e.g. CPU, cache, addressing modes, pipeline...">
+
+      <div class="chapter-grid" id="chapterGrid"></div>
+    </section>
+
+    <!-- INTERACTIVE CPU SIMULATOR -->
+    <section class="section sim-section" id="simulator">
+      <div class="section-heading">
+        <p class="tag">INTERACTIVE SIMULATION</p>
+        <h2>Instruction Cycle Simulator</h2>
+        <p>Step through how the CPU executes an instruction (Fetch → Decode → Execute → Store).</p>
+      </div>
+      <div class="sim-box">
+        <div class="sim-controls">
+          <button id="simStepBtn" class="btn">Next Step ➔</button>
+          <button id="simResetBtn" class="btn btn-outline">Reset Cycle</button>
+          <span class="sim-stage-label" id="simStageText">Stage: 1. Fetch Instruction</span>
+        </div>
+        <div class="sim-registers">
+          <div class="reg-box" id="regPC">
+            <span class="reg-name">PC (Prog Counter)</span>
+            <span class="reg-val" id="valPC">0x004</span>
+          </div>
+          <div class="reg-box" id="regMAR">
+            <span class="reg-name">MAR (Mem Address)</span>
+            <span class="reg-val" id="valMAR">0x004</span>
+          </div>
+          <div class="reg-box" id="regMDR">
+            <span class="reg-name">MDR / MBR</span>
+            <span class="reg-val" id="valMDR">LOAD R1, [100]</span>
+          </div>
+          <div class="reg-box" id="regIR">
+            <span class="reg-name">IR (Instruction)</span>
+            <span class="reg-val" id="valIR">LOAD R1, [100]</span>
+          </div>
+          <div class="reg-box" id="regAC">
+            <span class="reg-name">AC / Registers</span>
+            <span class="reg-val" id="valAC">R1 = 42</span>
+          </div>
+        </div>
+        <div class="sim-explanation" id="simExpl">
+          <strong>Step 1 (Fetch):</strong> The Program Counter (PC) holds the address of the next instruction (0x004). This address is transferred to the Memory Address Register (MAR) via the address bus.
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED NOTE VIEWER -->
+    <section class="notes-section" id="notes">
+      <div class="notes-box">
+        <p class="tag">TOPIC NOTES</p>
+        <h2 id="noteTitle">Select a chapter</h2>
+        <p id="noteDescription">Click on any chapter card above to read simplified notes, key formulas, diagrams, and exam pointers.</p>
+        <div id="noteContent"></div>
+        <div class="note-footer-action" style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <a id="videoLink" class="btn" href="#videos">Watch Related Video Lectures ↗</a>
+          <button id="favChapterBtn" class="btn btn-outline" style="border-color:#cbd5e1; color:#0f172a;">★ Save to Favorites</button>
+          <button id="downloadBackupBtn" class="btn btn-outline" style="border-color:#3b82f6; color:#2563eb;">💾 Export Study Backup (.json)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO LECTURES -->
+    <section class="section video-section" id="videos">
+      <div class="section-heading">
+        <p class="tag">WATCH AND UNDERSTAND</p>
+        <h2>Curated Video Lectures</h2>
+        <p>Master complex architecture topics with top-rated university & competitive exam lectures.</p>
+      </div>
+      <div class="video-grid" id="videoGrid"></div>
+    </section>
+
+    <!-- INTERACTIVE QUIZ -->
+    <section class="quiz-section" id="quiz">
+      <div class="quiz-box">
+        <p class="tag">TEST YOUR KNOWLEDGE</p>
+        <h2>COA Practice Quiz</h2>
+        <div class="quiz-meta" style="display:flex; justify-content:space-between; align-items:center;">
+          <span id="quizTimer" style="font-family:monospace; font-weight:bold; color:#4f46e5; background:#eef2ff; padding:3px 8px; border-radius:6px;">⏱ Time Left: 03:00</span>
+          <span id="quizScore">Score: 0 / 0</span>
+        </div>
+        <p id="question">Question will appear here.</p>
+        <div id="options" class="options"></div>
+        <p id="feedback" aria-live="polite"></p>
+        <div class="quiz-controls">
+          <span id="progress">Question 1 of 6</span>
+          <button id="nextBtn" class="btn" disabled>Next Question →</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>COA<span>Hub</span></h3>
+    <p>Computer Organization & Architecture • Learn smart. Practice daily. Understand deeply.</p>
+    <p>Student Learning Project • Vanilla HTML, CSS & JavaScript</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
